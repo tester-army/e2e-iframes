@@ -1,0 +1,729 @@
+@import "tailwindcss" source("../");
+
+@theme inline {
+  --color-*: initial;
+
+  --color-e2e-ink-900: var(--e2e-ink-900);
+  --color-e2e-ink-800: var(--e2e-ink-800);
+  --color-e2e-ink-700: var(--e2e-ink-700);
+  --color-e2e-ink-600: var(--e2e-ink-600);
+  --color-e2e-ink-400: var(--e2e-ink-400);
+  --color-e2e-ink-300: var(--e2e-ink-300);
+  --color-e2e-ink-200: var(--e2e-ink-200);
+
+  --color-e2e-paper-0: var(--e2e-paper-0);
+  --color-e2e-paper-50: var(--e2e-paper-50);
+  --color-e2e-paper-100: var(--e2e-paper-100);
+
+  --color-e2e-accent-orange: var(--e2e-accent-orange);
+
+  --color-e2e-code-plain: var(--e2e-code-plain);
+  --color-e2e-code-keyword: var(--e2e-code-keyword);
+  --color-e2e-code-string: var(--e2e-code-string);
+  --color-e2e-code-function: var(--e2e-code-function);
+  --color-e2e-code-param: var(--e2e-code-param);
+  --color-e2e-code-comment: var(--e2e-code-comment);
+  --color-e2e-code-type: var(--e2e-code-type);
+
+  --color-e2e-white-6: var(--e2e-white-6);
+  --color-e2e-white-7: var(--e2e-white-7);
+  --color-e2e-white-10: var(--e2e-white-10);
+  --color-e2e-white-12: var(--e2e-white-12);
+  --color-e2e-white-16: var(--e2e-white-16);
+  --color-e2e-white-20: var(--e2e-white-20);
+  --color-e2e-white-24: var(--e2e-white-24);
+  --color-e2e-white-25: var(--e2e-white-25);
+  --color-e2e-white-30: var(--e2e-white-30);
+  --color-e2e-white-50: var(--e2e-white-50);
+  --color-e2e-white-60: var(--e2e-white-60);
+  --color-e2e-white-65: var(--e2e-white-65);
+  --color-e2e-white-70: var(--e2e-white-70);
+  --color-e2e-white-80: var(--e2e-white-80);
+  --color-e2e-white-90: var(--e2e-white-90);
+
+  --color-e2e-ink-90: var(--e2e-ink-90);
+
+  --color-e2e-vendor-gemini: var(--e2e-vendor-gemini);
+  --color-e2e-vendor-llama: var(--e2e-vendor-llama);
+  --color-e2e-vendor-mistral: var(--e2e-vendor-mistral);
+  --color-e2e-vendor-deepseek: var(--e2e-vendor-deepseek);
+
+  --color-e2e-dither-1: var(--e2e-dither-1);
+  --color-e2e-dither-2: var(--e2e-dither-2);
+  --color-e2e-dither-3: var(--e2e-dither-3);
+  --color-e2e-dither-4: var(--e2e-dither-4);
+
+  --color-e2e-canvas: var(--e2e-canvas);
+  --color-e2e-panel: var(--e2e-panel);
+  --color-e2e-panel-raised: var(--e2e-panel-raised);
+  --color-e2e-tab-bar: var(--e2e-tab-bar);
+  --color-e2e-button-fill: var(--e2e-button-fill);
+  --color-e2e-button-fill-light: var(--e2e-button-fill-light);
+  --color-e2e-button-fill-solid: var(--e2e-button-fill-solid);
+  --color-e2e-chip-fill: var(--e2e-chip-fill);
+  --color-e2e-chip-fill-selected: var(--e2e-chip-fill-selected);
+  --color-e2e-field-fill: var(--e2e-field-fill);
+  --color-e2e-code-line-highlight: var(--e2e-code-line-highlight);
+  --color-e2e-glow: var(--e2e-glow);
+
+  --color-e2e-hairline: var(--e2e-hairline);
+  --color-e2e-hairline-strong: var(--e2e-hairline-strong);
+  --color-e2e-chrome: var(--e2e-chrome);
+  --color-e2e-button-stroke: var(--e2e-button-stroke);
+  --color-e2e-chip-stroke: var(--e2e-chip-stroke);
+  --color-e2e-chip-stroke-selected: var(--e2e-chip-stroke-selected);
+  --color-e2e-field-stroke: var(--e2e-field-stroke);
+  --color-e2e-code-line-rule: var(--e2e-code-line-rule);
+
+  --color-e2e-text-bright: var(--e2e-text-bright);
+  --color-e2e-text-primary: var(--e2e-text-primary);
+  --color-e2e-text-soft: var(--e2e-text-soft);
+  --color-e2e-text-link: var(--e2e-text-link);
+  --color-e2e-text-secondary: var(--e2e-text-secondary);
+  --color-e2e-text-muted: var(--e2e-text-muted);
+  --color-e2e-text-dim: var(--e2e-text-dim);
+  --color-e2e-text-faint: var(--e2e-text-faint);
+  --color-e2e-text-on-light: var(--e2e-text-on-light);
+  --color-e2e-tab-active: var(--e2e-tab-active);
+  --color-e2e-tab-inactive: var(--e2e-tab-inactive);
+
+  --color-e2e-icon: var(--e2e-icon);
+  --color-e2e-icon-dim: var(--e2e-icon-dim);
+  --color-e2e-icon-bright: var(--e2e-icon-bright);
+  --color-e2e-chrome-dot: var(--e2e-chrome-dot);
+
+  --color-e2e-accent: var(--e2e-accent);
+  --color-e2e-chip-glow: var(--e2e-chip-glow);
+  --color-e2e-caret: var(--e2e-caret);
+
+  --color-e2e-panel-tint: var(--e2e-panel-tint);
+  --color-e2e-panel-rule: var(--e2e-panel-rule);
+  --color-e2e-panel-rule-strong: var(--e2e-panel-rule-strong);
+  --color-e2e-panel-scrim: var(--e2e-panel-scrim);
+
+  --font-e2e-display: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-e2e-sans: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-e2e-mono: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --shadow-e2e-chip-glow: var(--e2e-shadow-chip-glow);
+
+  --breakpoint-xs: 30rem;
+
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+}
+
+:root {
+
+  --e2e-ink-900: rgb(17 17 17);
+  --e2e-ink-800: rgb(22 22 22);
+  --e2e-ink-700: rgb(26 26 26);
+  --e2e-ink-600: rgb(30 30 30);
+  --e2e-ink-400: rgb(78 78 78);
+  --e2e-ink-300: rgb(110 110 110);
+  --e2e-ink-200: rgb(120 120 120);
+
+  --e2e-paper-0: rgb(255 255 255);
+  --e2e-paper-50: rgb(249 248 247);
+  --e2e-paper-100: rgb(230 237 243);
+
+  --e2e-accent-orange: rgb(255 128 1);
+
+  --e2e-code-plain: var(--e2e-paper-100);
+  --e2e-code-keyword: rgb(255 123 114);
+  --e2e-code-string: rgb(165 214 255);
+  --e2e-code-function: rgb(210 168 255);
+  --e2e-code-param: var(--e2e-accent-orange);
+  --e2e-code-comment: rgb(139 148 158);
+  --e2e-code-type: rgb(121 192 255);
+
+  --e2e-white-6: rgb(255 255 255 / 0.06);
+  --e2e-white-7: rgb(255 255 255 / 0.07);
+  --e2e-white-10: rgb(255 255 255 / 0.10);
+  --e2e-white-12: rgb(255 255 255 / 0.12);
+  --e2e-white-16: rgb(255 255 255 / 0.16);
+  --e2e-white-20: rgb(255 255 255 / 0.20);
+  --e2e-white-24: rgb(255 255 255 / 0.24);
+  --e2e-white-25: rgb(255 255 255 / 0.25);
+  --e2e-white-30: rgb(255 255 255 / 0.30);
+  --e2e-white-50: rgb(255 255 255 / 0.50);
+  --e2e-white-60: rgb(255 255 255 / 0.60);
+  --e2e-white-65: rgb(255 255 255 / 0.65);
+  --e2e-white-70: rgb(255 255 255 / 0.70);
+  --e2e-white-80: rgb(255 255 255 / 0.80);
+  --e2e-white-90: rgb(255 255 255 / 0.90);
+
+  --e2e-ink-90: rgb(22 22 22 / 0.90);
+
+  --e2e-vendor-gemini: rgb(142 117 178);
+  --e2e-vendor-llama: rgb(4 103 223);
+  --e2e-vendor-mistral: rgb(250 82 15);
+  --e2e-vendor-deepseek: rgb(87 134 254);
+
+  --e2e-dither-1: var(--e2e-ink-800);
+  --e2e-dither-2: rgb(88 85 76);
+  --e2e-dither-3: rgb(137 132 119);
+  --e2e-dither-4: rgb(195 188 170);
+
+  --e2e-canvas: var(--e2e-ink-900);
+  --e2e-panel: var(--e2e-ink-800);
+  --e2e-panel-raised: var(--e2e-ink-600);
+  --e2e-tab-bar: var(--e2e-ink-700);
+  --e2e-button-fill: var(--e2e-ink-90);
+  --e2e-button-fill-light: var(--e2e-white-90);
+  --e2e-button-fill-solid: var(--e2e-paper-50);
+  --e2e-chip-fill: var(--e2e-ink-90);
+  --e2e-chip-fill-selected: var(--e2e-white-7);
+  --e2e-field-fill: var(--e2e-ink-700);
+  --e2e-code-line-highlight: var(--e2e-white-6);
+  --e2e-glow: var(--e2e-paper-0);
+
+  --e2e-hairline: var(--e2e-white-12);
+  --e2e-hairline-strong: var(--e2e-white-20);
+  --e2e-chrome: var(--e2e-ink-400);
+  --e2e-button-stroke: var(--e2e-white-80);
+  --e2e-chip-stroke: var(--e2e-white-25);
+  --e2e-chip-stroke-selected: var(--e2e-white-90);
+  --e2e-field-stroke: var(--e2e-white-30);
+  --e2e-code-line-rule: var(--e2e-white-90);
+
+  --e2e-text-bright: var(--e2e-paper-0);
+  --e2e-text-primary: var(--e2e-paper-50);
+  --e2e-text-soft: var(--e2e-white-90);
+  --e2e-text-link: var(--e2e-white-80);
+  --e2e-text-secondary: var(--e2e-white-70);
+  --e2e-text-muted: var(--e2e-white-65);
+  --e2e-text-dim: var(--e2e-white-60);
+  --e2e-text-faint: var(--e2e-white-50);
+  --e2e-text-on-light: var(--e2e-ink-800);
+  --e2e-tab-active: var(--e2e-code-plain);
+  --e2e-tab-inactive: var(--e2e-ink-300);
+
+  --e2e-icon: var(--e2e-white-70);
+  --e2e-icon-dim: var(--e2e-white-60);
+  --e2e-icon-bright: var(--e2e-paper-0);
+  --e2e-chrome-dot: var(--e2e-ink-200);
+
+  --e2e-accent: var(--e2e-accent-orange);
+  --e2e-chip-glow: var(--e2e-white-12);
+  --e2e-caret: var(--e2e-white-80);
+
+  --e2e-panel-tint: rgb(17 17 17 / 0.05);
+  --e2e-panel-rule: rgb(17 17 17 / 0.10);
+  --e2e-panel-rule-strong: rgb(17 17 17 / 0.40);
+  --e2e-panel-scrim: rgb(17 17 17 / 0.90);
+
+  --e2e-radius: 0;
+  --e2e-radius-dot: 4px;
+
+  --e2e-shadow-chip-glow: 0 0 16px var(--e2e-chip-glow);
+
+  --e2e-fade-hero: linear-gradient(180deg, rgb(17 17 17 / 0) 8.69%, rgb(17 17 17) 99.59%);
+  --e2e-fade-code: linear-gradient(180deg, rgb(17 17 17 / 0) 2.24%, rgb(17 17 17) 75.86%);
+  --e2e-fade-footer: linear-gradient(180deg, rgb(17 17 17 / 0.4) 2.94%, rgb(17 17 17) 78.84%);
+  --e2e-fade-meadow: linear-gradient(180deg, rgb(17 17 17 / 0) 11.36%, rgb(17 17 17) 100%);
+
+  --e2e-opacity-wordmark: 0.1;
+  --e2e-opacity-dim: 0.4;
+  --e2e-opacity-glow-plate: 0.4;
+  --e2e-opacity-logo-grid: 0.55;
+  --e2e-opacity-logo-band: 0.6;
+
+  --e2e-content-width: 1200px;
+  --e2e-gutter: 24px;
+  --e2e-bleed-width: 1392px;
+  --e2e-section-gap: 120px;
+  --e2e-footer-gap: 160px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --e2e-section-gap: 200px;
+    --e2e-footer-gap: 200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --e2e-opacity-dim: 0.2;
+  }
+}
+
+@layer base {
+  .e2e {
+    background-color: var(--e2e-canvas);
+    color: var(--e2e-text-primary);
+    font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--e2e-hairline);
+  }
+
+  html {
+    overflow-x: clip;
+  }
+}
+
+@utility e2e-container {
+  width: 100%;
+  max-width: calc(var(--e2e-content-width) + 2 * var(--e2e-gutter));
+  margin-inline: auto;
+  padding-inline: var(--e2e-gutter);
+}
+
+@utility e2e-bleed {
+  width: 100%;
+  max-width: var(--e2e-bleed-width);
+  margin-inline: auto;
+}
+
+@utility e2e-section {
+  padding-top: var(--e2e-section-gap);
+}
+
+@utility e2e-dot {
+  border-radius: var(--e2e-radius-dot);
+}
+
+@utility e2e-fade-hero {
+  background-image: var(--e2e-fade-hero);
+}
+
+@utility e2e-fade-code {
+  background-image: var(--e2e-fade-code);
+}
+
+@utility e2e-fade-footer {
+  background-image: var(--e2e-fade-footer);
+}
+
+@utility e2e-fade-meadow {
+  background-image: var(--e2e-fade-meadow);
+}
+
+@utility type-display-xl {
+  font-family: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 793px;
+  line-height: 600px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+@utility type-h1 {
+  font-family: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 38px;
+  line-height: 43px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 60px;
+    line-height: 68px;
+  }
+}
+
+@utility type-h2 {
+  font-family: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 34px;
+  line-height: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+@utility type-h2-lg {
+  font-family: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 38px;
+  line-height: 44px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+@utility type-h3-display {
+  font-family: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-stat {
+  font-family: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 56px;
+  line-height: 60px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-brand {
+  font-family: var(--e2e-font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 26px;
+  line-height: 26px;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+
+  @media (min-width: 1024px) {
+    font-size: 30px;
+    line-height: 30px;
+    letter-spacing: -0.04em;
+  }
+}
+
+@utility type-brand-slash {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 26px;
+  line-height: 26px;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+
+  @media (min-width: 1024px) {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+@utility type-manifesto {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 26px;
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 32px;
+    line-height: 44px;
+  }
+}
+
+@utility type-step-title {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 27px;
+  line-height: 34px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 34px;
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility type-feature-title {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-faq-q {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    line-height: 34px;
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility type-body {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-step-body {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 13px;
+    line-height: 22px;
+  }
+}
+
+@utility type-body-s {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  @media (min-width: 1024px) {
+    line-height: 22px;
+  }
+}
+
+@utility type-body-xs {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-caption {
+  font-family: var(--e2e-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-eyebrow {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 23px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@utility type-step-index {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@utility type-label-xs {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  @media (min-width: 1024px) {
+    font-size: 10px;
+    line-height: 14px;
+    letter-spacing: 0.12em;
+  }
+}
+
+@utility type-nav {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 16px;
+  line-height: 32.5px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@utility type-button-l {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@utility type-button {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@utility type-button-s {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@utility type-button-xs {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility type-chip {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-field {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-command {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-code {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 16px;
+  line-height: 27px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-code-s {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13.5px;
+  line-height: 23px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-tab {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-tab-s {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-footer-link {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@utility type-legal {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+@utility type-stat-label {
+  font-family: var(--e2e-font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@keyframes e2e-line-flash {
+  from {
+    background-color: var(--e2e-white-16);
+  }
+}
+
+@keyframes e2e-tab-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@utility animate-e2e-line-flash {
+  animation: e2e-line-flash 0.9s ease-out;
+}
+
+@utility animate-e2e-tab-fade {
+  animation: e2e-tab-fade 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-e2e-line-flash,
+  .animate-e2e-tab-fade {
+    animation: none;
+  }
+}
+
+.e2e [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+  transition-delay: calc(var(--reveal-i, 0) * 70ms);
+}
+
+.e2e [data-reveal-slide] {
+  transform: translateY(14px);
+  transition: transform 0.5s ease-out;
+  transition-delay: calc(var(--reveal-i, 0) * 70ms);
+}
+
+.e2e [data-shown] [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.e2e [data-shown] [data-reveal-slide] {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .e2e [data-reveal],
+  .e2e [data-reveal-slide] {
+    transform: none;
+    transition: none;
+  }
+
+  .e2e [data-reveal] {
+    opacity: 1;
+  }
+}
