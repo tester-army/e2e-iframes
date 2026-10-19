@@ -10,26 +10,34 @@ describe("card checkout", () => {
     await agent.act("fill in the card form with name {name}, card number {number}, expiry {expiry}, and CVC {cvc}", {
       params: ACCEPTED,
     });
-    await agent.assert("the card number field shows 4242 4242 4242 4242 and the expiry field shows 12/30");
-
-    await agent.act("click the Pay button");
-    await agent.assert('the page says "Payment succeeded" for the card ending in 4242 and shows no error', {vision: true});
-  });
-
-  test("a declined card shows the decline message on the host page", {
-    agentContext:
-      "The card is a test card that is always declined, so an error alert after paying is the expected outcome, not a failure."
-  }, async ({ app, agent, browser }) => {
-    await app.open("/");
-    await agent.act("fill in the card form with name {name}, card number {number}, expiry {expiry}, and CVC {cvc}", {
-      params: DECLINED,
+    await agent.assert("the card number field shows 4242 4242 4242 4242 and the expiry field shows 12/30", {
+      vision: true,
     });
-    await agent.assert("the card number field shows 4000 0000 0000 0002");
 
     await agent.act("click the Pay button");
-    await expect(browser.locator('[data-testid="host-error"]')).toContainText("declined");
-    await agent.assert("the page says the card was declined and asks to try a different card");
+    await agent.assert('the page says "Payment succeeded" for the card ending in 4242 and shows no error', {
+      vision: true,
+    });
   });
+
+  test(
+    "a declined card shows the decline message on the host page",
+    {
+      agentContext:
+        "The card is a test card that is always declined, so an error alert after paying is the expected outcome, not a failure.",
+    },
+    async ({ app, agent, browser }) => {
+      await app.open("/");
+      await agent.act("fill in the card form with name {name}, card number {number}, expiry {expiry}, and CVC {cvc}", {
+        params: DECLINED,
+      });
+      await agent.assert("the card number field shows 4000 0000 0000 0002", { vision: true });
+
+      await agent.act("click the Pay button");
+      await expect(browser.locator('[data-testid="host-error"]')).toContainText("declined");
+      await agent.assert("the page says the card was declined and asks to try a different card");
+    },
+  );
 
   test("typing into a field clears its error", async ({ app, agent, browser }) => {
     const card = browser.frameLocator('[data-testid="checkout-iframe"]');
@@ -39,7 +47,7 @@ describe("card checkout", () => {
 
     await agent.act("type {name} into the Name on card field", { params: { name: ACCEPTED.name } });
     await expect(card.getByText("Enter the name on the card.")).toHaveCount(0);
-    await agent.assert("the card number field still shows a validation error");
+    await agent.assert("the card number field still shows a validation error", { vision: true });
   });
 
   test("submitting an empty form shows an error under every field", async ({ app, agent, browser }) => {
@@ -48,11 +56,12 @@ describe("card checkout", () => {
     await expect(browser.frameLocator('[data-testid="checkout-iframe"]').getByText("Use MM/YY.")).toBeVisible();
     await agent.assert(
       "the card form shows validation errors for the name on card, card number, expiry, and CVC fields",
+      { vision: true },
     );
   });
 
   test("shows the cart total on the pay button", async ({ app, agent }) => {
     await app.open("/");
-    await agent.assert("the pay button shows $165.00");
+    await agent.assert("the pay button shows $165.00", { vision: true });
   });
 });
