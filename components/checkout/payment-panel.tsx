@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import { CART_TOTAL } from "@/lib/cart";
-import { isCardToHostMessage, isSameOrigin, postToFrame } from "@/lib/checkout-messages";
+import { cardSrc, isCardToHostMessage, postToFrame } from "@/lib/checkout-messages";
+import { CARD_ORIGIN, HOST_ORIGIN } from "@/lib/origins";
 
 type PaymentResult = { ok: true; last4: string } | { ok: false; error: string };
 
@@ -14,14 +15,14 @@ export function PaymentPanel() {
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
-      if (!isSameOrigin(event) || event.source !== iframeRef.current?.contentWindow) return;
+      if (event.origin !== CARD_ORIGIN || event.source !== iframeRef.current?.contentWindow) return;
       if (!isCardToHostMessage(event.data)) return;
 
       const message = event.data;
       switch (message.type) {
         case "card:ready":
           setHeight(message.height);
-          postToFrame(iframeRef.current, { type: "host:amount", amount: CART_TOTAL });
+          postToFrame(iframeRef.current, { type: "host:amount", amount: CART_TOTAL }, CARD_ORIGIN);
           break;
         case "card:resize":
           setHeight(message.height);
@@ -40,7 +41,7 @@ export function PaymentPanel() {
 
     window.addEventListener("message", onMessage);
     // The card may have loaded before this listener existed; ask it to announce itself again.
-    postToFrame(iframeRef.current, { type: "host:ping" });
+    postToFrame(iframeRef.current, { type: "host:ping" }, CARD_ORIGIN);
     return () => window.removeEventListener("message", onMessage);
   }, []);
 
@@ -48,7 +49,7 @@ export function PaymentPanel() {
     <div className="flex flex-col gap-4">
       <iframe
         ref={iframeRef}
-        src="/embed/card"
+        src={cardSrc(CARD_ORIGIN, HOST_ORIGIN)}
         title="Card payment"
         data-testid="checkout-iframe"
         style={{ height }}

@@ -7,12 +7,24 @@ import { LightButton } from "@/components/ui/light-button";
 import { DECLINED_CARD, digitsOnly, validateCard, type CardErrors, type CardFields } from "@/lib/card";
 import type { CardFieldKey } from "@/lib/card-fields";
 import { formatUsd } from "@/lib/cart";
-import { isFieldToFormMessage, isHostToCardMessage, isSameOrigin, postToParent } from "@/lib/checkout-messages";
+import {
+  isFieldToFormMessage,
+  isHostToCardMessage,
+  isSameOrigin,
+  postToParent,
+  readHostOrigin,
+  type CardToHostMessage,
+} from "@/lib/checkout-messages";
 
 const FAKE_NETWORK_MS = 800;
 
 function isChildFrame(source: MessageEventSource | null): boolean {
   return source !== null && (source as Window).parent === window && source !== window;
+}
+
+// Without a host origin there is nobody to report to, so messages are dropped rather than broadcast.
+function postToHost(hostOrigin: string | null, message: CardToHostMessage) {
+  if (hostOrigin) postToParent(message, hostOrigin);
 }
 
 function wait(ms: number) {
@@ -21,6 +33,7 @@ function wait(ms: number) {
 
 export function CardForm() {
   const formRef = useRef<HTMLFormElement>(null);
+  const hostOriginRef = useRef<string | null>(null);
   // Field values are only read on submit, so keystrokes don't need to re-render the form.
   const valuesRef = useRef<CardFields>({ name: "", number: "", expiry: "", cvc: "" });
   const [errors, setErrors] = useState<CardErrors>({});
@@ -32,19 +45,21 @@ export function CardForm() {
     const form = formRef.current;
     if (!form) return;
 
+    const hostOrigin = readHostOrigin(window.location.hash);
+    hostOriginRef.current = hostOrigin;
+
     const height = () => Math.ceil(form.getBoundingClientRect().height);
 
     function onMessage(event: MessageEvent) {
-      if (!isSameOrigin(event)) return;
-
-      if (event.source === window.parent && isHostToCardMessage(event.data)) {
+      if (event.origin === hostOrigin && event.source === window.parent) {
+        if (!isHostToCardMessage(event.data)) return;
         const message = event.data;
-        if (message.type === "host:ping") postToParent({ type: "card:ready", height: height() });
+        if (message.type === "host:ping") postToHost(hostOrigin, { type: "card:ready", height: height() });
         else setAmount(message.amount);
         return;
       }
 
-      if (!isChildFrame(event.source) || !isFieldToFormMessage(event.data)) return;
+      if (!isSameOrigin(event) || !isChildFrame(event.source) || !isFieldToFormMessage(event.data)) return;
 
       const message = event.data;
       const { field } = message;
@@ -63,9 +78,9 @@ export function CardForm() {
     }
 
     window.addEventListener("message", onMessage);
-    postToParent({ type: "card:ready", height: height() });
+    postToHost(hostOrigin, { type: "card:ready", height: height() });
 
-    const observer = new ResizeObserver(() => postToParent({ type: "card:resize", height: height() }));
+    const observer = new ResizeObserver(() => postToHost(hostOrigin, { type: "card:resize", height: height() }));
     observer.observe(form);
 
     return () => {
@@ -84,14 +99,17 @@ export function CardForm() {
     if (Object.keys(nextErrors).length > 0) return;
 
     startSubmit(async () => {
-      postToParent({ type: "card:submit" });
+      postToHost(hostOriginRef.current, { type: "card:submit" });
       await wait(FAKE_NETWORK_MS);
 
       const number = digitsOnly(values.number);
       if (number === DECLINED_CARD) {
-        postToParent({ type: "card:error", message: "Your card was declined. Try a different card." });
+        postToHost(hostOriginRef.current, {
+          type: "card:error",
+          message: "Your card was declined. Try a different card.",
+        });
       } else {
-        postToParent({ type: "card:success", last4: number.slice(-4) });
+        postToHost(hostOriginRef.current, { type: "card:success", last4: number.slice(-4) });
       }
     });
   }

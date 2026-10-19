@@ -12,7 +12,7 @@ The page is set up like a hosted payment form such as Stripe Elements:
 - **Card form** (`app/embed/card`) handles validation, submission, and the Pay button.
 - **Card fields** (`app/embed/field/[field]`): each input (name, number, expiry, CVC) is rendered in its own nested iframe.
 
-The frames talk to each other with same-origin `postMessage` calls. The message types are defined in `lib/checkout-messages.ts`.
+Like a real payment provider, the card form and fields load from a different origin than the host page (see [Two origins](#two-origins)). The frames talk to each other with `postMessage` calls, and the host and card form check each other's origin. The message types are defined in `lib/checkout-messages.ts`.
 
 ### Test cards
 
@@ -31,6 +31,19 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+### Two origins
+
+One dev server answers on two hostnames, which the browser treats as separate sites:
+
+- Host page: `http://localhost:3000` (`NEXT_PUBLIC_HOST_ORIGIN`)
+- Card iframes (`/embed/*`): `http://127.0.0.1:3000` (`NEXT_PUBLIC_CARD_ORIGIN`)
+
+Open the host page on `localhost`; on `127.0.0.1` it would share the card's origin. If you run on another port, set both variables to match, for example:
+
+```bash
+NEXT_PUBLIC_HOST_ORIGIN=http://localhost:3100 NEXT_PUBLIC_CARD_ORIGIN=http://127.0.0.1:3100 npm run dev -- -p 3100
+```
 
 ## End-to-end tests
 
