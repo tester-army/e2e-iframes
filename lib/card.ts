@@ -9,14 +9,17 @@ export type CardFields = {
 
 export type CardErrors = Partial<Record<keyof CardFields, string>>;
 
+const NON_DIGITS = /\D/g;
+const CARD_NUMBER_GROUPS = /(\d{4})(?=\d)/g;
+const EXPIRY_PATTERN = /^(\d{2})\/(\d{2})$/;
+const CVC_PATTERN = /^\d{3,4}$/;
+
 export function digitsOnly(value: string): string {
-  return value.replace(/\D/g, "");
+  return value.replace(NON_DIGITS, "");
 }
 
 export function formatCardNumber(value: string): string {
-  return digitsOnly(value)
-    .slice(0, 16)
-    .replace(/(\d{4})(?=\d)/g, "$1 ");
+  return digitsOnly(value).slice(0, 16).replace(CARD_NUMBER_GROUPS, "$1 ");
 }
 
 export function formatExpiry(value: string): string {
@@ -24,7 +27,7 @@ export function formatExpiry(value: string): string {
   return digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
 }
 
-export function passesLuhn(digits: string): boolean {
+function passesLuhn(digits: string): boolean {
   let sum = 0;
   for (let i = 0; i < digits.length; i++) {
     let digit = Number(digits[digits.length - 1 - i]);
@@ -37,6 +40,19 @@ export function passesLuhn(digits: string): boolean {
   return sum % 10 === 0;
 }
 
+function validateExpiry(expiry: string, now: Date): string | undefined {
+  const match = EXPIRY_PATTERN.exec(expiry);
+  if (!match) return "Use MM/YY.";
+
+  const month = Number(match[1]);
+  const year = 2000 + Number(match[2]);
+  if (month < 1 || month > 12) return "Month must be 01 to 12.";
+
+  const currentYear = now.getFullYear();
+  if (year < currentYear || (year === currentYear && month < now.getMonth() + 1)) return "Card has expired.";
+  return undefined;
+}
+
 export function validateCard(fields: CardFields, now: Date): CardErrors {
   const errors: CardErrors = {};
 
@@ -46,18 +62,10 @@ export function validateCard(fields: CardFields, now: Date): CardErrors {
   if (number.length !== 16) errors.number = "Card number must be 16 digits.";
   else if (!passesLuhn(number)) errors.number = "Card number is invalid.";
 
-  const match = /^(\d{2})\/(\d{2})$/.exec(fields.expiry);
-  if (!match) {
-    errors.expiry = "Use MM/YY.";
-  } else {
-    const month = Number(match[1]);
-    const year = 2000 + Number(match[2]);
-    if (month < 1 || month > 12) errors.expiry = "Month must be 01 to 12.";
-    else if (year < now.getFullYear() || (year === now.getFullYear() && month < now.getMonth() + 1))
-      errors.expiry = "Card has expired.";
-  }
+  const expiryError = validateExpiry(fields.expiry, now);
+  if (expiryError) errors.expiry = expiryError;
 
-  if (!/^\d{3,4}$/.test(fields.cvc)) errors.cvc = "CVC must be 3 or 4 digits.";
+  if (!CVC_PATTERN.test(fields.cvc)) errors.cvc = "CVC must be 3 or 4 digits.";
 
   return errors;
 }

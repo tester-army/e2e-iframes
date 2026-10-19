@@ -38,7 +38,7 @@ export const CARD_FIELDS: Record<CardFieldKey, CardFieldConfig> = {
 export const CARD_FIELD_KEYS = Object.keys(CARD_FIELDS) as CardFieldKey[];
 
 export function isCardFieldKey(value: string): value is CardFieldKey {
-  return value in CARD_FIELDS;
+  return Object.hasOwn(CARD_FIELDS, value);
 }
 
 export function fieldSrc(field: CardFieldKey): string {

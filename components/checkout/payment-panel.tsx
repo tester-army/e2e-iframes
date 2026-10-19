@@ -3,31 +3,25 @@
 import { useEffect, useRef, useState } from "react";
 
 import { CART_TOTAL } from "@/lib/cart";
-import { isCardToHostMessage, type HostToCardMessage } from "@/lib/checkout-messages";
+import { isCardToHostMessage, isSameOrigin, postToFrame } from "@/lib/checkout-messages";
 
-const CARD_SRC = "/embed/card";
-const INITIAL_HEIGHT = 420;
+type PaymentResult = { ok: true; last4: string } | { ok: false; error: string };
 
 export function PaymentPanel() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [height, setHeight] = useState(INITIAL_HEIGHT);
-  const [result, setResult] = useState<{ ok: boolean; text: string } | null>(null);
+  const [height, setHeight] = useState(420);
+  const [result, setResult] = useState<PaymentResult | null>(null);
 
   useEffect(() => {
-    function send(message: HostToCardMessage) {
-      iframeRef.current?.contentWindow?.postMessage(message, window.location.origin);
-    }
-
     function onMessage(event: MessageEvent) {
-      if (event.origin !== window.location.origin) return;
-      if (event.source !== iframeRef.current?.contentWindow) return;
+      if (!isSameOrigin(event) || event.source !== iframeRef.current?.contentWindow) return;
       if (!isCardToHostMessage(event.data)) return;
 
       const message = event.data;
       switch (message.type) {
         case "card:ready":
           setHeight(message.height);
-          send({ type: "host:amount", amount: CART_TOTAL, currency: "USD" });
+          postToFrame(iframeRef.current, { type: "host:amount", amount: CART_TOTAL });
           break;
         case "card:resize":
           setHeight(message.height);
@@ -36,17 +30,17 @@ export function PaymentPanel() {
           setResult(null);
           break;
         case "card:success":
-          setResult({ ok: true, text: message.last4 });
+          setResult({ ok: true, last4: message.last4 });
           break;
         case "card:error":
-          setResult({ ok: false, text: message.message });
+          setResult({ ok: false, error: message.message });
           break;
       }
     }
 
     window.addEventListener("message", onMessage);
-    send({ type: "host:ping" });
-
+    // The card may have loaded before this listener existed; ask it to announce itself again.
+    postToFrame(iframeRef.current, { type: "host:ping" });
     return () => window.removeEventListener("message", onMessage);
   }, []);
 
@@ -54,21 +48,21 @@ export function PaymentPanel() {
     <div className="flex flex-col gap-4">
       <iframe
         ref={iframeRef}
-        src={CARD_SRC}
+        src="/embed/card"
         title="Card payment"
         data-testid="checkout-iframe"
         style={{ height }}
         className="block w-full border border-e2e-hairline-strong"
       />
-      {result ? (
-        <p
-          role={result.ok ? "status" : "alert"}
-          className={result.ok ? "type-code-s text-e2e-text-soft" : "type-code-s text-e2e-accent"}
-          data-testid={result.ok ? "confirmed-last4" : "host-error"}
-        >
-          {result.text}
+      {result === null ? null : result.ok ? (
+        <p role="status" className="type-code-s text-e2e-text-soft" data-testid="confirmed-last4">
+          {result.last4}
         </p>
-      ) : null}
+      ) : (
+        <p role="alert" className="type-code-s text-e2e-accent" data-testid="host-error">
+          {result.error}
+        </p>
+      )}
     </div>
   );
 }
