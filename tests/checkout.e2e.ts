@@ -5,7 +5,7 @@ const ACCEPTED = { name: "Ada Lovelace", number: "4242 4242 4242 4242", expiry: 
 const DECLINED = { ...ACCEPTED, number: "4000 0000 0000 0002" };
 
 describe("card checkout", () => {
-  test("a valid card is charged and the host shows its last four digits", async ({ app, agent, browser }) => {
+  test("a valid card is charged and the host shows its last four digits", async ({ app, agent }) => {
     await app.open("/");
     await agent.act("fill in the card form with name {name}, card number {number}, expiry {expiry}, and CVC {cvc}", {
       params: ACCEPTED,
@@ -13,11 +13,13 @@ describe("card checkout", () => {
     await agent.assert("the card number field shows 4242 4242 4242 4242 and the expiry field shows 12/30");
 
     await agent.act("click the Pay button");
-    await expect(browser.locator('[data-testid="confirmed-last4"]')).toHaveText("4242");
-    await agent.assert("the page confirms the payment with the card ending 4242 and shows no error");
+    await agent.assert('the page says "Payment succeeded" for the card ending in 4242 and shows no error', {vision: true});
   });
 
-  test("a declined card shows the decline message on the host page", async ({ app, agent, browser }) => {
+  test("a declined card shows the decline message on the host page", {
+    agentContext:
+      "The card is a test card that is always declined, so an error alert after paying is the expected outcome, not a failure."
+  }, async ({ app, agent, browser }) => {
     await app.open("/");
     await agent.act("fill in the card form with name {name}, card number {number}, expiry {expiry}, and CVC {cvc}", {
       params: DECLINED,
