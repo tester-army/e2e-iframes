@@ -34,11 +34,31 @@ export function isSameOrigin(event: MessageEvent): boolean {
   return event.origin === window.location.origin;
 }
 
-export function postToParent(message: CardToHostMessage | FieldToFormMessage) {
+// Fields talk to the card form on their own origin; only the card form talks across origins to the host.
+export function postToParent(message: CardToHostMessage | FieldToFormMessage, targetOrigin = window.location.origin) {
   if (window.parent === window) return;
-  window.parent.postMessage(message, window.location.origin);
+  window.parent.postMessage(message, targetOrigin);
 }
 
-export function postToFrame(frame: HTMLIFrameElement | null, message: HostToCardMessage | FormToFieldMessage) {
-  frame?.contentWindow?.postMessage(message, window.location.origin);
+export function postToFrame(
+  frame: HTMLIFrameElement | null,
+  message: HostToCardMessage | FormToFieldMessage,
+  targetOrigin = window.location.origin,
+) {
+  frame?.contentWindow?.postMessage(message, targetOrigin);
+}
+
+// The host passes its origin in the iframe URL hash, which never reaches the server.
+export function cardSrc(cardOrigin: string, hostOrigin: string): string {
+  return `${cardOrigin}/embed/card#origin=${encodeURIComponent(hostOrigin)}`;
+}
+
+export function readHostOrigin(hash: string): string | null {
+  const value = new URLSearchParams(hash.slice(1)).get("origin");
+  if (!value) return null;
+  try {
+    return new URL(value).origin;
+  } catch {
+    return null;
+  }
 }

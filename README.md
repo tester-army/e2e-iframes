@@ -16,6 +16,19 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Two origins
+
+The card form plays the payment provider, so it loads from a different origin than the shop, like Stripe or Adyen fields do. One dev server answers on both:
+
+- Shop: `http://localhost:3000` (`NEXT_PUBLIC_HOST_ORIGIN`)
+- Card iframes (`/embed/*`): `http://127.0.0.1:3000` (`NEXT_PUBLIC_CARD_ORIGIN`)
+
+Open the shop on `localhost`; on `127.0.0.1` it would share the card's origin. If you run on another port, set both variables to match, for example:
+
+```bash
+NEXT_PUBLIC_HOST_ORIGIN=http://localhost:3100 NEXT_PUBLIC_CARD_ORIGIN=http://127.0.0.1:3100 npm run dev -- -p 3100
+```
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
