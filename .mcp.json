@@ -2,10 +2,7 @@
   "mcpServers": {
     "e2e": {
       "command": "npx",
-      "args": [
-        "e2e",
-        "mcp"
-      ]
+      "args": ["e2e", "mcp"]
     }
   }
 }

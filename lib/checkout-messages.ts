@@ -14,9 +14,7 @@ export type FieldToFormMessage =
   | { type: "field:change"; field: CardFieldKey; value: string }
   | { type: "field:enter"; field: CardFieldKey };
 
-export type FormToFieldMessage =
-  | { type: "form:state"; disabled: boolean; invalid: boolean }
-  | { type: "form:focus" };
+export type FormToFieldMessage = { type: "form:state"; disabled: boolean; invalid: boolean } | { type: "form:focus" };
 
 function hasTypePrefix(data: unknown, prefix: string): data is { type: string } {
   return (
@@ -41,9 +39,6 @@ export function postToParent(message: CardToHostMessage | FieldToFormMessage) {
   window.parent.postMessage(message, window.location.origin);
 }
 
-export function postToFrame(
-  frame: HTMLIFrameElement | null,
-  message: HostToCardMessage | FormToFieldMessage,
-) {
+export function postToFrame(frame: HTMLIFrameElement | null, message: HostToCardMessage | FormToFieldMessage) {
   frame?.contentWindow?.postMessage(message, window.location.origin);
 }

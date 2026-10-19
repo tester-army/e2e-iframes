@@ -120,7 +120,6 @@
 }
 
 :root {
-
   --e2e-ink-900: rgb(17 17 17);
   --e2e-ink-800: rgb(22 22 22);
   --e2e-ink-700: rgb(26 26 26);
@@ -145,21 +144,21 @@
 
   --e2e-white-6: rgb(255 255 255 / 0.06);
   --e2e-white-7: rgb(255 255 255 / 0.07);
-  --e2e-white-10: rgb(255 255 255 / 0.10);
+  --e2e-white-10: rgb(255 255 255 / 0.1);
   --e2e-white-12: rgb(255 255 255 / 0.12);
   --e2e-white-16: rgb(255 255 255 / 0.16);
-  --e2e-white-20: rgb(255 255 255 / 0.20);
+  --e2e-white-20: rgb(255 255 255 / 0.2);
   --e2e-white-24: rgb(255 255 255 / 0.24);
   --e2e-white-25: rgb(255 255 255 / 0.25);
-  --e2e-white-30: rgb(255 255 255 / 0.30);
-  --e2e-white-50: rgb(255 255 255 / 0.50);
-  --e2e-white-60: rgb(255 255 255 / 0.60);
+  --e2e-white-30: rgb(255 255 255 / 0.3);
+  --e2e-white-50: rgb(255 255 255 / 0.5);
+  --e2e-white-60: rgb(255 255 255 / 0.6);
   --e2e-white-65: rgb(255 255 255 / 0.65);
-  --e2e-white-70: rgb(255 255 255 / 0.70);
-  --e2e-white-80: rgb(255 255 255 / 0.80);
-  --e2e-white-90: rgb(255 255 255 / 0.90);
+  --e2e-white-70: rgb(255 255 255 / 0.7);
+  --e2e-white-80: rgb(255 255 255 / 0.8);
+  --e2e-white-90: rgb(255 255 255 / 0.9);
 
-  --e2e-ink-90: rgb(22 22 22 / 0.90);
+  --e2e-ink-90: rgb(22 22 22 / 0.9);
 
   --e2e-vendor-gemini: rgb(142 117 178);
   --e2e-vendor-llama: rgb(4 103 223);
@@ -215,9 +214,9 @@
   --e2e-caret: var(--e2e-white-80);
 
   --e2e-panel-tint: rgb(17 17 17 / 0.05);
-  --e2e-panel-rule: rgb(17 17 17 / 0.10);
-  --e2e-panel-rule-strong: rgb(17 17 17 / 0.40);
-  --e2e-panel-scrim: rgb(17 17 17 / 0.90);
+  --e2e-panel-rule: rgb(17 17 17 / 0.1);
+  --e2e-panel-rule-strong: rgb(17 17 17 / 0.4);
+  --e2e-panel-scrim: rgb(17 17 17 / 0.9);
 
   --e2e-radius: 0;
   --e2e-radius-dot: 4px;
