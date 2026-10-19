@@ -54,15 +54,32 @@ export function PaymentPanel() {
         style={{ height }}
         className="block w-full border border-e2e-hairline-strong"
       />
-      {result === null ? null : result.ok ? (
-        <p role="status" className="type-code-s text-e2e-text-soft" data-testid="confirmed-last4">
-          {result.last4}
-        </p>
-      ) : (
-        <p role="alert" className="type-code-s text-e2e-accent" data-testid="host-error">
-          {result.error}
-        </p>
-      )}
+      <PaymentResultMessage result={result} />
+    </div>
+  );
+}
+
+function PaymentResultMessage({ result }: { result: PaymentResult | null }) {
+  if (!result) return null;
+
+  if (!result.ok) {
+    return (
+      <p role="alert" className="type-code-s text-e2e-accent" data-testid="host-error">
+        {result.error}
+      </p>
+    );
+  }
+
+  return (
+    <div
+      role="status"
+      className="flex flex-col gap-1 border border-e2e-hairline-strong bg-e2e-panel p-5"
+      data-testid="payment-success"
+    >
+      <p className="type-body-s font-medium text-e2e-text-bright">Payment succeeded</p>
+      <p className="type-code-s text-e2e-text-soft">
+        Card ending in <span data-testid="confirmed-last4">{result.last4}</span>
+      </p>
     </div>
   );
 }
