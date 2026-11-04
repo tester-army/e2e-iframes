@@ -15,7 +15,7 @@ describe("card checkout", () => {
     });
 
     await agent.act("click the Pay button");
-    await agent.assert('the page says "Payment succeeded" for the card ending in 4242 and shows no error', {
+    await agent.assert('the page says "payment succeeded" for the card ending in 4242 and shows no error', {
       vision: true,
     });
   });
@@ -43,17 +43,17 @@ describe("card checkout", () => {
     const card = browser.frameLocator('[data-testid="checkout-iframe"]');
     await app.open("/");
     await agent.act("click the Pay button without filling in the card form");
-    await expect(card.getByText("Enter the name on the card.")).toBeVisible();
+    await expect(card.getByText("enter the name on the card.")).toBeVisible();
 
     await agent.act("type {name} into the Name on card field", { params: { name: ACCEPTED.name } });
-    await expect(card.getByText("Enter the name on the card.")).toHaveCount(0);
+    await expect(card.getByText("enter the name on the card.")).toHaveCount(0);
     await agent.assert("the card number field still shows a validation error", { vision: true });
   });
 
   test("submitting an empty form shows an error under every field", async ({ app, agent, browser }) => {
     await app.open("/");
     await agent.act("click the Pay button without filling in the card form");
-    await expect(browser.frameLocator('[data-testid="checkout-iframe"]').getByText("Use MM/YY.")).toBeVisible();
+    await expect(browser.frameLocator('[data-testid="checkout-iframe"]').getByText("use mm/yy.")).toBeVisible();
     await agent.assert(
       "the card form shows validation errors for the name on card, card number, expiry, and CVC fields",
       { vision: true },

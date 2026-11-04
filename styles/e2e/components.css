@@ -1,0 +1,63 @@
+/* e2e buttons, tags and fields. Buttons change no colour on hover. */
+@layer components {
+  .e2e-button {
+    @apply inline-flex min-h-e2e-6 cursor-pointer items-center justify-center gap-e2e-1 px-e2e-2 type-mono-m disabled:cursor-not-allowed disabled:opacity-50;
+    &:focus-visible {
+      @apply outline-2 outline-offset-4 outline-e2e-green;
+    }
+  }
+  .e2e-button-primary {
+    @apply bg-e2e-blue text-e2e-off-white;
+  }
+  .e2e-button-light {
+    @apply bg-e2e-off-white text-e2e-neutral-800;
+  }
+  .e2e-button-outline {
+    @apply border border-e2e-neutral-700 text-e2e-off-white;
+  }
+  .e2e-button-compact {
+    @apply min-h-[33px] px-[9px] type-caption;
+  }
+  .e2e-tag {
+    @apply inline-flex items-center px-e2e-1 py-e2e-half type-caption;
+  }
+  .e2e-field {
+    @apply relative w-full bg-e2e-neutral-800;
+  }
+  .e2e-field-input {
+    @apply h-e2e-7 w-full bg-transparent px-e2e-2 pt-[22px] pb-[12px] font-cassette text-base leading-none text-e2e-off-white outline-none;
+    &:focus-visible {
+      @apply outline-2 outline-e2e-green;
+    }
+    &:disabled {
+      @apply cursor-not-allowed opacity-50;
+    }
+    &[aria-invalid="true"] {
+      @apply outline-2 outline-e2e-mint;
+    }
+  }
+  .e2e-field-select {
+    @apply h-e2e-7 w-full appearance-none rounded-none bg-transparent pr-e2e-6 pl-e2e-2 font-cassette-mono text-sm text-e2e-neutral-300 outline-none;
+    &:focus-visible {
+      @apply outline-2 outline-e2e-green;
+    }
+    &:disabled {
+      @apply cursor-not-allowed opacity-50;
+    }
+    &[aria-invalid="true"] {
+      @apply outline-2 outline-e2e-mint;
+    }
+  }
+  .e2e-field-caret {
+    @apply pointer-events-none absolute top-1/2 right-e2e-2 -translate-y-1/2 text-e2e-neutral-300;
+    .e2e-field-select:disabled + & {
+      @apply opacity-50;
+    }
+  }
+  .e2e-field-label {
+    @apply pointer-events-none absolute top-[6px] left-e2e-2 font-cassette-mono text-xs leading-[15px] text-e2e-neutral-400;
+    .peer:placeholder-shown:not(:focus) ~ & {
+      @apply top-[21px] text-sm leading-[14px] text-e2e-neutral-300;
+    }
+  }
+}

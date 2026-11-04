@@ -51,12 +51,12 @@ export function FieldInput({ field }: { field: CardFieldKey }) {
       disabled={disabled}
       data-testid={`card-${field}`}
       className={clsx(
-        "block h-[46px] w-full border bg-e2e-field-fill px-4 type-field text-e2e-text-bright caret-e2e-caret",
-        "placeholder:text-e2e-text-faint",
-        "transition-[border-color,background-color] duration-200 motion-reduce:transition-none",
-        "hover:border-e2e-white-50 focus:border-e2e-button-stroke focus:bg-e2e-panel-raised focus:outline-none",
-        "disabled:pointer-events-none disabled:opacity-40",
-        invalid ? "border-e2e-accent" : "border-e2e-field-stroke",
+        "block h-e2e-6 w-full bg-e2e-neutral-800 px-e2e-2 font-cassette text-base text-e2e-off-white",
+        "placeholder:text-e2e-neutral-500",
+        // The frame clips anything outside the input, so the rings sit inside it.
+        "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-e2e-green",
+        "disabled:cursor-not-allowed disabled:opacity-50",
+        invalid ? "outline-2 -outline-offset-2 outline-e2e-mint" : "outline-none",
       )}
     />
   );

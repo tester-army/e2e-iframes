@@ -46,14 +46,14 @@ export function PaymentPanel() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-e2e-2">
       <iframe
         ref={iframeRef}
         src={cardSrc(CARD_ORIGIN, HOST_ORIGIN)}
-        title="Card payment"
+        title="card payment"
         data-testid="checkout-iframe"
         style={{ height }}
-        className="block w-full border border-e2e-hairline-strong"
+        className="block w-full border border-e2e-neutral-800"
       />
       <PaymentResultMessage result={result} />
     </div>
@@ -65,7 +65,7 @@ function PaymentResultMessage({ result }: { result: PaymentResult | null }) {
 
   if (!result.ok) {
     return (
-      <p role="alert" className="type-code-s text-e2e-accent" data-testid="host-error">
+      <p role="alert" className="type-body-m text-e2e-mint" data-testid="host-error">
         {result.error}
       </p>
     );
@@ -74,12 +74,12 @@ function PaymentResultMessage({ result }: { result: PaymentResult | null }) {
   return (
     <div
       role="status"
-      className="flex flex-col gap-1 border border-e2e-hairline-strong bg-e2e-panel p-5"
+      className="flex flex-col gap-e2e-1 border border-e2e-neutral-800 bg-e2e-neutral-800/40 p-e2e-3"
       data-testid="payment-success"
     >
-      <p className="type-body-s font-medium text-e2e-text-bright">Payment succeeded</p>
-      <p className="type-code-s text-e2e-text-soft">
-        Card ending in <span data-testid="confirmed-last4">{result.last4}</span>
+      <p className="type-h5 text-e2e-green">payment succeeded</p>
+      <p className="type-body-m text-e2e-neutral-300">
+        card ending in <span data-testid="confirmed-last4">{result.last4}</span>
       </p>
     </div>
   );

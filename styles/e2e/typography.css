@@ -1,0 +1,375 @@
+/* e2e type scale. Headings, captions and mono labels lowercase themselves; body, code and number styles keep their case. */
+
+@utility type-display {
+  font-family: var(--font-cassette);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  @media (width >= 48rem) {
+    font-size: 5.5rem;
+    line-height: 1;
+  }
+}
+
+@utility type-desktop-display {
+  @apply type-display;
+  font-size: 5.5rem;
+  line-height: 1;
+  @media (width >= 48rem) {
+    font-size: 5.5rem;
+    line-height: 1;
+  }
+}
+
+@utility type-mobile-display {
+  @apply type-display;
+  font-size: 3rem;
+  line-height: 1;
+  @media (width >= 48rem) {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@utility type-h1 {
+  font-family: var(--font-cassette);
+  font-size: 2.4375rem;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  @media (width >= 48rem) {
+    font-size: 4.4375rem;
+    line-height: 0.95;
+  }
+}
+
+@utility type-desktop-h1 {
+  @apply type-h1;
+  font-size: 4.4375rem;
+  line-height: 0.95;
+  @media (width >= 48rem) {
+    font-size: 4.4375rem;
+    line-height: 0.95;
+  }
+}
+
+@utility type-mobile-h1 {
+  @apply type-h1;
+  font-size: 2.4375rem;
+  line-height: 0.95;
+  @media (width >= 48rem) {
+    font-size: 2.4375rem;
+    line-height: 0.95;
+  }
+}
+
+@utility type-h2 {
+  font-family: var(--font-cassette);
+  font-size: 2.125rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  @media (width >= 48rem) {
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-desktop-h2 {
+  @apply type-h2;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-mobile-h2 {
+  @apply type-h2;
+  font-size: 2.125rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 2.125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-statement {
+  font-family: var(--font-cassette);
+  font-size: 2.125rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  @media (width >= 48rem) {
+    font-size: 2.8125rem;
+    line-height: 1.2;
+  }
+}
+
+@utility type-desktop-statement {
+  @apply type-statement;
+  font-size: 2.8125rem;
+  line-height: 1.2;
+  @media (width >= 48rem) {
+    font-size: 2.8125rem;
+    line-height: 1.2;
+  }
+}
+
+@utility type-mobile-statement {
+  @apply type-statement;
+  font-size: 2.125rem;
+  line-height: 1.3;
+  @media (width >= 48rem) {
+    font-size: 2.125rem;
+    line-height: 1.3;
+  }
+}
+
+@utility type-h3 {
+  font-family: var(--font-cassette);
+  font-size: 1.8125rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  @media (width >= 48rem) {
+    font-size: 2.4375rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-desktop-h3 {
+  @apply type-h3;
+  font-size: 2.4375rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 2.4375rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-mobile-h3 {
+  @apply type-h3;
+  font-size: 1.8125rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 1.8125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-h4 {
+  font-family: var(--font-cassette);
+  font-size: 1.5625rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  @media (width >= 48rem) {
+    font-size: 2.125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-desktop-h4 {
+  @apply type-h4;
+  font-size: 2.125rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 2.125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-mobile-h4 {
+  @apply type-h4;
+  font-size: 1.5625rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 1.5625rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-h5 {
+  font-family: var(--font-cassette);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  @media (width >= 48rem) {
+    font-size: 1.8125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-desktop-h5 {
+  @apply type-h5;
+  font-size: 1.8125rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 1.8125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-mobile-h5 {
+  @apply type-h5;
+  font-size: 1.375rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 1.375rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-body-xl {
+  font-family: var(--font-cassette);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+@utility type-body-l {
+  font-family: var(--font-cassette);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+@utility type-body-m {
+  font-family: var(--font-cassette);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+@utility type-body-s {
+  font-family: var(--font-cassette);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+@utility type-caption {
+  font-family: var(--font-cassette-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+@utility type-mono-m {
+  font-family: var(--font-cassette-mono);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 0.9375rem;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+@utility type-number-l {
+  font-family: var(--font-cassette);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (width >= 48rem) {
+    font-size: 5.125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-desktop-number-l {
+  @apply type-number-l;
+  font-size: 5.125rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 5.125rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-mobile-number-l {
+  @apply type-number-l;
+  font-size: 3rem;
+  line-height: 1.1;
+  @media (width >= 48rem) {
+    font-size: 3rem;
+    line-height: 1.1;
+  }
+}
+
+@utility type-number-xl {
+  font-family: var(--font-cassette);
+  font-size: 4.5rem;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (width >= 48rem) {
+    font-size: 10.625rem;
+    line-height: 0.9;
+  }
+}
+
+@utility type-desktop-number-xl {
+  @apply type-number-xl;
+  font-size: 10.625rem;
+  line-height: 0.9;
+  @media (width >= 48rem) {
+    font-size: 10.625rem;
+    line-height: 0.9;
+  }
+}
+
+@utility type-mobile-number-xl {
+  @apply type-number-xl;
+  font-size: 4.5rem;
+  line-height: 0.9;
+  @media (width >= 48rem) {
+    font-size: 4.5rem;
+    line-height: 0.9;
+  }
+}
+
+@utility type-code-m {
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@utility type-code-s {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@utility type-resource-title {
+  letter-spacing: 0;
+  font-family: var(--font-cassette);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: lowercase;
+}

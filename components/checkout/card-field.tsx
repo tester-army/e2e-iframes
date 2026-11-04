@@ -24,10 +24,10 @@ export function CardField({ field, ready, disabled, error }: CardFieldProps) {
   }, [ready, disabled, invalid]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-e2e-1">
       <span
         onClick={() => postToFrame(frameRef.current, { type: "form:focus" })}
-        className="type-label-xs text-e2e-text-faint"
+        className="type-caption text-e2e-neutral-400"
       >
         {label}
       </span>
@@ -37,10 +37,10 @@ export function CardField({ field, ready, disabled, error }: CardFieldProps) {
         title={label}
         aria-describedby={invalid ? errorId : undefined}
         data-testid={`card-${field}-frame`}
-        className="block h-[46px] w-full"
+        className="block h-e2e-6 w-full"
       />
       {invalid ? (
-        <p id={errorId} className="type-caption text-e2e-accent">
+        <p id={errorId} className="type-caption text-e2e-mint">
           {error}
         </p>
       ) : null}

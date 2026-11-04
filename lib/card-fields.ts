@@ -11,23 +11,23 @@ type CardFieldConfig = {
 };
 
 export const CARD_FIELDS: Record<CardFieldKey, CardFieldConfig> = {
-  name: { label: "Name on card", placeholder: "Ada Lovelace", autoComplete: "cc-name", format: (value) => value },
+  name: { label: "name on card", placeholder: "Ada Lovelace", autoComplete: "cc-name", format: (value) => value },
   number: {
-    label: "Card number",
+    label: "card number",
     placeholder: "4242 4242 4242 4242",
     autoComplete: "cc-number",
     inputMode: "numeric",
     format: formatCardNumber,
   },
   expiry: {
-    label: "Expiry",
-    placeholder: "MM/YY",
+    label: "expiry",
+    placeholder: "mm/yy",
     autoComplete: "cc-exp",
     inputMode: "numeric",
     format: formatExpiry,
   },
   cvc: {
-    label: "CVC",
+    label: "cvc",
     placeholder: "123",
     autoComplete: "cc-csc",
     inputMode: "numeric",

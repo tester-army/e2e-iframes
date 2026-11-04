@@ -1,0 +1,70 @@
+/* e2e colors, fonts and the 8px spacing scale (`p-e2e-1` is 8px; plain `p-1` stays 4px). */
+@theme static {
+  --font-cassette: "Cassette", Arial, sans-serif;
+  --font-cassette-mono: "Cassette Mono", "JetBrains Mono", monospace;
+  --font-code: "JetBrains Mono", monospace;
+
+  --color-e2e-neutral-100: #f7f7f7;
+  --color-e2e-neutral-200: #dfdfdf;
+  --color-e2e-neutral-300: #c8c8c8;
+  --color-e2e-neutral-400: #b1b1b1;
+  --color-e2e-neutral-500: #8d8d8d;
+  --color-e2e-neutral-600: #686868;
+  --color-e2e-neutral-700: #434343;
+  --color-e2e-neutral-800: #1c1c1c;
+  --color-e2e-neutral-900: #000000;
+
+  --color-e2e-blue-100: #f3f7ff;
+  --color-e2e-blue-200: #cfe0ff;
+  --color-e2e-blue-300: #acc8ff;
+  --color-e2e-blue-400: #88b0ff;
+  --color-e2e-blue-500: #558cff;
+  --color-e2e-blue-600: #1a5fff;
+  --color-e2e-blue-700: #0032a8;
+  --color-e2e-blue-800: #012177;
+  --color-e2e-blue-900: #00124c;
+
+  --color-e2e-green-100: #e8ffed;
+  --color-e2e-green-200: #b9ffcc;
+  --color-e2e-green-300: #64ff9d;
+  --color-e2e-green-400: #25e17b;
+  --color-e2e-green-500: #00bd63;
+  --color-e2e-green-600: #00964d;
+  --color-e2e-green-700: #007139;
+  --color-e2e-green-800: #004e25;
+  --color-e2e-green-900: #003014;
+
+  --color-e2e-cyan-100: #e4feff;
+  --color-e2e-cyan-200: #befcff;
+  --color-e2e-cyan-300: #8af9ff;
+  --color-e2e-cyan-400: #00e6ef;
+  --color-e2e-cyan-500: #00c2ca;
+  --color-e2e-cyan-600: #00999f;
+  --color-e2e-cyan-700: #007176;
+  --color-e2e-cyan-800: #004f53;
+  --color-e2e-cyan-900: #003032;
+
+  --spacing-e2e-0: 0rem;
+  --spacing-e2e-half: 0.25rem;
+  --spacing-e2e-1: 0.5rem;
+  --spacing-e2e-2: 1rem;
+  --spacing-e2e-3: 1.5rem;
+  --spacing-e2e-4: 2rem;
+  --spacing-e2e-5: 2.5rem;
+  --spacing-e2e-6: 3rem;
+  --spacing-e2e-7: 3.5rem;
+  --spacing-e2e-8: 4rem;
+  --spacing-e2e-10: 5rem;
+  --spacing-e2e-12: 6rem;
+  --spacing-e2e-16: 8rem;
+}
+
+@theme inline {
+  --color-e2e-off-white: var(--color-e2e-neutral-100);
+  --color-e2e-gray: var(--color-e2e-neutral-400);
+  --color-e2e-black: var(--color-e2e-neutral-900);
+  --color-e2e-blue: var(--color-e2e-blue-600);
+  --color-e2e-navy: var(--color-e2e-blue-700);
+  --color-e2e-green: var(--color-e2e-green-300);
+  --color-e2e-mint: var(--color-e2e-cyan-300);
+}

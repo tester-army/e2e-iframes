@@ -1,0 +1,11 @@
+/* Cassette and Cassette Mono, e2e's brand faces, are licensed fonts and are not
+ * part of this repository. With either installed locally the page uses it;
+ * otherwise the stacks in theme.css fall back to Arial and JetBrains Mono. */
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/JetBrainsMono-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}

@@ -6,7 +6,7 @@ import { FieldInput } from "@/components/checkout/field-input";
 import { CARD_FIELD_KEYS, isCardFieldKey } from "@/lib/card-fields";
 
 export const metadata: Metadata = {
-  title: "Card field",
+  title: "card field",
   robots: { index: false },
 };
 

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useTransition, type FormEvent } from "react";
 
 import { CardField } from "@/components/checkout/card-field";
-import { LightButton } from "@/components/ui/light-button";
+import { Button } from "@/components/ui/button";
 import { DECLINED_CARD, digitsOnly, validateCard, type CardErrors, type CardFields } from "@/lib/card";
 import type { CardFieldKey } from "@/lib/card-fields";
 import { formatUsd } from "@/lib/cart";
@@ -106,7 +106,7 @@ export function CardForm() {
       if (number === DECLINED_CARD) {
         postToHost(hostOriginRef.current, {
           type: "card:error",
-          message: "Your card was declined. Try a different card.",
+          message: "your card was declined. try a different card.",
         });
       } else {
         postToHost(hostOriginRef.current, { type: "card:success", last4: number.slice(-4) });
@@ -114,19 +114,25 @@ export function CardForm() {
     });
   }
 
-  const payLabel = isSubmitting ? "Processing..." : amount === null ? "Pay" : `Pay ${formatUsd(amount)}`;
+  const payLabel = isSubmitting ? "processing..." : amount === null ? "pay" : `pay ${formatUsd(amount)}`;
 
   return (
-    <form ref={formRef} noValidate onSubmit={onSubmit} className="flex flex-col gap-5 p-5" data-testid="card-form">
+    <form
+      ref={formRef}
+      noValidate
+      onSubmit={onSubmit}
+      className="flex flex-col gap-e2e-3 bg-e2e-neutral-800/40 p-e2e-3"
+      data-testid="card-form"
+    >
       <CardField field="name" ready={readyFields.name === true} disabled={isSubmitting} error={errors.name} />
       <CardField field="number" ready={readyFields.number === true} disabled={isSubmitting} error={errors.number} />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-e2e-2">
         <CardField field="expiry" ready={readyFields.expiry === true} disabled={isSubmitting} error={errors.expiry} />
         <CardField field="cvc" ready={readyFields.cvc === true} disabled={isSubmitting} error={errors.cvc} />
       </div>
-      <LightButton type="submit" disabled={isSubmitting} className="mt-1">
+      <Button type="submit" disabled={isSubmitting} className="w-full">
         <span data-testid="pay-button">{payLabel}</span>
-      </LightButton>
+      </Button>
     </form>
   );
 }
