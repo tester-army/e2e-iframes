@@ -25,7 +25,7 @@
     @apply relative w-full bg-e2e-neutral-800;
   }
   .e2e-field-input {
-    @apply h-e2e-7 w-full bg-transparent px-e2e-2 pt-[22px] pb-[12px] font-cassette text-base leading-none text-e2e-off-white outline-none;
+    @apply h-e2e-7 w-full bg-transparent px-e2e-2 pt-[22px] pb-[12px] font-cassette text-base leading-none text-e2e-off-white;
     &:focus-visible {
       @apply outline-2 outline-e2e-green;
     }
@@ -37,7 +37,7 @@
     }
   }
   .e2e-field-select {
-    @apply h-e2e-7 w-full appearance-none rounded-none bg-transparent pr-e2e-6 pl-e2e-2 font-cassette-mono text-sm text-e2e-neutral-300 outline-none;
+    @apply h-e2e-7 w-full appearance-none rounded-none bg-transparent pr-e2e-6 pl-e2e-2 font-cassette-mono text-sm text-e2e-neutral-300;
     &:focus-visible {
       @apply outline-2 outline-e2e-green;
     }

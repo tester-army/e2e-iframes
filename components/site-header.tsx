@@ -11,7 +11,7 @@ export function SiteHeader() {
         <Link
           href="/"
           aria-label="e2e home"
-          className="flex items-center outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-e2e-green"
+          className="flex items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-e2e-green"
         >
           <Logo label="" className="h-e2e-3 w-auto" />
         </Link>
@@ -19,7 +19,7 @@ export function SiteHeader() {
           href={E2E_DOCS_URL}
           target="_blank"
           rel="noreferrer"
-          className="type-caption text-e2e-off-white outline-none hover:text-e2e-green focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-e2e-green"
+          className="type-caption text-e2e-off-white hover:text-e2e-green focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-e2e-green"
         >
           [ docs ]
         </a>
