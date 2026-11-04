@@ -237,6 +237,7 @@
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0;
+  text-transform: none;
 }
 
 @utility type-body-l {
@@ -245,6 +246,7 @@
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0;
+  text-transform: none;
 }
 
 @utility type-body-m {
@@ -253,6 +255,7 @@
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0;
+  text-transform: none;
 }
 
 @utility type-body-s {
@@ -261,6 +264,7 @@
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0;
+  text-transform: none;
 }
 
 @utility type-caption {
